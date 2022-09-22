@@ -1,4 +1,5 @@
 #include <Arduino.h>
+#include "constants.h"
 
 // // Define pin connections & motor's steps per revolution
 // const int DIRECTION_PIN = A3;
@@ -27,7 +28,7 @@
 
 void run_stepper(int steps_per_revolution, int delay_microseconds)
 {
-	wdt_disable();
+	// wdt_disable();
 	// Set motor direction clockwise
 	digitalWrite(DIRECTION_PIN_1, HIGH);
 
@@ -56,12 +57,12 @@ void run_stepper(int steps_per_revolution, int delay_microseconds)
 		delayMicroseconds(delay_microseconds);
 	}
 	delay(2000); // Wait a second
-	wdt_enable(1);
+	// wdt_enable(1);
 }
 
 void run_stepper_temp_2(int steps_per_revolution, int delay_microseconds)
 {
-	wdt_disable();
+	// wdt_disable();
 	// Set motor direction clockwise
 	digitalWrite(DIRECTION_PIN_1, HIGH);
 
@@ -90,5 +91,5 @@ void run_stepper_temp_2(int steps_per_revolution, int delay_microseconds)
 		delayMicroseconds(delay_microseconds);
 	}
 	delay(2000); // Wait a second
-	wdt_enable(1);
+	// wdt_enable(1);
 }

@@ -30,7 +30,7 @@ void run_line_stepper(float x_multiplier, float y_multiplier, int stepsx, int st
     //     delay(1);
     // }
     // int steps = 0;
-    wdt_disable();
+    // wdt_disable();
     while ((STEPPER_X.distanceToGo() != 0) || (STEPPER_Y.distanceToGo() != 0))
     {
         // Serial.print("Inside!");
@@ -56,7 +56,7 @@ void run_line_stepper(float x_multiplier, float y_multiplier, int stepsx, int st
         // delay(1);
         
     }
-    wdt_enable(1);
+    // wdt_enable(1);
     // Serial.print("Steps moved: ");
     // Serial.println(steps);
 }

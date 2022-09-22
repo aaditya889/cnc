@@ -56,12 +56,12 @@
 
 void draw_arc_ijk_mm(float start_x_mm, float start_y_mm, float end_x_mm, float end_y_mm, float center_x_mm, float center_y_mm)
 {
-    int start_x_steps = ceil((float)start_x_mm/STEP_QUANTA_MM);
-    int start_y_steps = ceil((float)start_y_mm/STEP_QUANTA_MM);
-    int end_x_steps = ceil((float)end_x_mm/STEP_QUANTA_MM);
-    int end_y_steps = ceil((float)end_y_mm/STEP_QUANTA_MM);
-    int center_x_steps = ceil((float)center_x_mm/STEP_QUANTA_MM); 
-    int center_y_steps = ceil((float)center_y_mm/STEP_QUANTA_MM);
+    int start_x_steps = ((float)start_x_mm/STEP_QUANTA_MM);
+    int start_y_steps = ((float)start_y_mm/STEP_QUANTA_MM);
+    int end_x_steps = ((float)end_x_mm/STEP_QUANTA_MM);
+    int end_y_steps = ((float)end_y_mm/STEP_QUANTA_MM);
+    int center_x_steps = ((float)center_x_mm/STEP_QUANTA_MM); 
+    int center_y_steps = ((float)center_y_mm/STEP_QUANTA_MM);
 
     float radius_steps_start = sqrtf((sq(center_x_steps-start_x_steps)) + (sq(center_y_steps-start_y_steps)));
     float radius_steps_end = sqrtf((sq(center_x_steps-end_x_steps)) + (sq(center_y_steps-end_y_steps)));
@@ -80,6 +80,7 @@ void draw_arc_ijk_mm(float start_x_mm, float start_y_mm, float end_x_mm, float e
     Serial.print(" ");
     Serial.print(center_y_steps);
     Serial.println(" ");
+    // wdt_disable();
     draw_bresenham_arc(start_x_steps, start_y_steps, end_x_steps, end_y_steps, center_x_steps, center_y_steps, radius_steps);
     Serial.println("DONE!");
 }

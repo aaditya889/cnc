@@ -1,7 +1,5 @@
 #include <Arduino.h>
 #include <math.h>
-#include "line_functions.h"
-#include "arc_functions.h"
 
 
 double *read_coordinates(String gcode_line)
