@@ -24,8 +24,8 @@ const char index_html[] PROGMEM = R"rawliteral(
   %BUTTONPLACEHOLDER%
 <script>function toggleCheckbox(element) {
   var xhr = new XMLHttpRequest();
-  if(element.checked){ xhr.open("GET", "/update?output="+element.id+"&state=1", true); }
-  else { xhr.open("GET", "/update?output="+element.id+"&state=0", true); }
+  if(element.checked){ xhr.open("GET", "/update_debug_switch?switch_id="+element.id+"&state=1", true); }
+  else { xhr.open("GET", "/update_debug_switch?switch_id="+element.id+"&state=0", true); }
   xhr.send();
 }
 </script>

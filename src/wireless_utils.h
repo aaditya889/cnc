@@ -1,18 +1,12 @@
 #include <ArduinoJson.h>
 #include "webpage.h"
 
-
 const char* input_parameter1 = "output";
 const char* input_parameter2 = "state";
 
-
-String outputState(int output){
-  if(digitalRead(output)){
-    return "checked";
-  }
-  else {
-    return "";
-  }
+String get_debug_switch_value(int debug_switch_idx){
+  if (DEBUG_SWITCHES[debug_switch_idx]) return "checked";
+  else return "";
 }
 
 
@@ -20,51 +14,21 @@ String outputState(int output){
 String processor(const String& var){
   if(var == "BUTTONPLACEHOLDER"){
     String buttons = "";
-    buttons += "<h4>Output - GPIO 32</h4><label class=\"switch\"><input type=\"checkbox\" onchange=\"toggleCheckbox(this)\" id=\"32\" " + outputState(32) + "><span class=\"slider\"></span></label>";
-    buttons += "<h4>Output - GPIO 25</h4><label class=\"switch\"><input type=\"checkbox\" onchange=\"toggleCheckbox(this)\" id=\"25\" " + outputState(25) + "><span class=\"slider\"></span></label>";
-    buttons += "<h4>Output - GPIO 27</h4><label class=\"switch\"><input type=\"checkbox\" onchange=\"toggleCheckbox(this)\" id=\"27\" " + outputState(27) + "><span class=\"slider\"></span></label>";
-    buttons += "<h4>Output - GPIO 13</h4><label class=\"switch\"><input type=\"checkbox\" onchange=\"toggleCheckbox(this)\" id=\"13\" " + outputState(13) + "><span class=\"slider\"></span></label>";
+    buttons += "<h4>Enable Verbose Logging</h4><label class=\"switch\"><input type=\"checkbox\" onchange=\"toggleCheckbox(this)\" id=\"0\" " + get_debug_switch_value(0) + "><span class=\"slider\"></span></label>";
+    buttons += "<h4>Debug Switch 1</h4><label class=\"switch\"><input type=\"checkbox\" onchange=\"toggleCheckbox(this)\" id=\"1\" " + get_debug_switch_value(1) + "><span class=\"slider\"></span></label>";
+    buttons += "<h4>Debug Switch 2</h4><label class=\"switch\"><input type=\"checkbox\" onchange=\"toggleCheckbox(this)\" id=\"2\" " + get_debug_switch_value(2) + "><span class=\"slider\"></span></label>";
+    buttons += "<h4>Debug Switch 3</h4><label class=\"switch\"><input type=\"checkbox\" onchange=\"toggleCheckbox(this)\" id=\"3\" " + get_debug_switch_value(3) + "><span class=\"slider\"></span></label>";
+    buttons += "<h4>Debug Switch 4</h4><label class=\"switch\"><input type=\"checkbox\" onchange=\"toggleCheckbox(this)\" id=\"4\" " + get_debug_switch_value(4) + "><span class=\"slider\"></span></label>";
     return buttons;
   }
   return String();
 }
 
 
-void testing(AsyncWebServerRequest *request)
-{
-  AsyncWebServerResponse *response;
-  String inputMessage1;
-  String inputMessage2;
-  // GET input1 value on <ESP_IP>/update?output=<inputMessage1>&state=<inputMessage2>
-  if (request->hasParam(input_parameter1) && request->hasParam(input_parameter2)) {
-      Serial.println("HAVE PARAMS!");
-      inputMessage1 = request->getParam(input_parameter1)->value();
-      inputMessage2 = request->getParam(input_parameter2)->value();
-      // digitalWrite(inputMessage1.toInt(), inputMessage2.toInt());
-  }
-  else {
-      inputMessage1 = "No message sent";
-      inputMessage2 = "No message sent";
-  }
-  if (request->hasParam("body", true))
-  {
-      Serial.println("HAVE BODY!");
-      inputMessage1 = request->getParam("body", true)->value();
-  }
-
-  Serial.print("GPIO: ");
-  Serial.print(inputMessage1);
-  Serial.print(" - Set to: ");
-  Serial.println(inputMessage2);
-  response = request->beginResponse(200, "text/plain",  "OK");
-  request->send(response);
-}
-
-
 void push_gcode_line(AsyncWebServerRequest *request)
 {
   AsyncWebServerResponse *response;
-  char message[200];
+  String message;
   char gcode_line[100];
   const size_t bufferSize = JSON_OBJECT_SIZE(2) + JSON_OBJECT_SIZE(3) + JSON_OBJECT_SIZE(5) + JSON_OBJECT_SIZE(8) + 300;
   DynamicJsonDocument payload(bufferSize);
@@ -73,7 +37,8 @@ void push_gcode_line(AsyncWebServerRequest *request)
   if (payload["gcode_line"] != nullptr) strcpy(gcode_line, payload["gcode_line"]);
 
   // sprintf(message, "Got GCODE line: %s", gcode_line);
-  add_gcode_line_to_queue(gcode_line);
+  if (add_gcode_line_to_queue(gcode_line)) message = "GCode line added";
+  else message = "Unable to add the GCode line";
 
   response = request->beginResponse(200, "text/plain",  message);
   response->addHeader("Access-Control-Allow-Origin", "*");
@@ -88,6 +53,31 @@ void cnc_healthcheck(AsyncWebServerRequest *request)
 
   sprintf(message, "Healthcheck Passed!\nIP used by the CNC Machine:: %s\n", WiFi.localIP().toString().c_str());
   
+  response = request->beginResponse(200, "text/plain",  message);
+  response->addHeader("Access-Control-Allow-Origin", "*");
+  request->send(response);
+}
+
+
+void update_debug_switch(AsyncWebServerRequest *request)
+{
+  AsyncWebServerResponse *response;
+  String inputMessage1;
+  String inputMessage2;
+  short switch_id;
+  boolean switch_state = false;
+  char message[300];
+
+  if (request->hasParam("switch_id") && request->hasParam("state")) 
+  {
+    switch_id = request->getParam("switch_id")->value().toInt();
+    switch_state = (boolean) request->getParam("state")->value().toInt();
+    // digitalWrite(inputMessage1.toInt(), inputMessage2.toInt());
+  }
+  Serial.printf("Updating debug switch:: id: %d, state: %d\n", switch_id, switch_state);
+  DEBUG_SWITCHES[switch_id] = (boolean) switch_state;
+  sprintf(message, "updated!");
+
   response = request->beginResponse(200, "text/plain",  message);
   response->addHeader("Access-Control-Allow-Origin", "*");
   request->send(response);
@@ -118,9 +108,9 @@ void setup_server()
   });
 
   // API routes 
-  SERVER.on("/testing", HTTP_GET, [](AsyncWebServerRequest *request){ testing(request); });
   SERVER.on("/push_gcode_line", HTTP_POST, [](AsyncWebServerRequest *request){ push_gcode_line(request); });
   SERVER.on("/cnc_healthcheck", HTTP_GET, [](AsyncWebServerRequest *request){ cnc_healthcheck(request); });
+  SERVER.on("/update_debug_switch", HTTP_GET, [](AsyncWebServerRequest *request){ update_debug_switch(request); });
   // SERVER.onNotFound(api_not_found);
 }
 

@@ -26,21 +26,16 @@ double *read_coordinates(String gcode_line)
         r_en_idx = curr_char;
     }
 
-    parameters[0] = gcode_line.substring(x_st_idx, x_en_idx).toDouble();
-    parameters[1] = gcode_line.substring(y_st_idx, y_en_idx).toDouble();
-    if (r_st_idx && r_en_idx) parameters[2] = gcode_line.substring(r_st_idx, r_en_idx).toDouble();
+    parameters[0] = (double) gcode_line.substring(x_st_idx, x_en_idx).toDouble();
+    parameters[1] = (double) gcode_line.substring(y_st_idx, y_en_idx).toDouble();
+    if (r_st_idx != -1 && r_en_idx != -1) parameters[2] = gcode_line.substring(r_st_idx, r_en_idx).toDouble();
     else parameters[2] = INT_MIN;
 
-    Serial.print("String parameters (X, Y, (R)):: ");
-    Serial.print(gcode_line.substring(x_st_idx, x_en_idx));
-    Serial.print(" ");
-    Serial.print(gcode_line.substring(y_st_idx, y_en_idx));
-    if (r_en_idx && r_st_idx)
-    {
-        Serial.print(" ");
-        Serial.println(gcode_line.substring(r_st_idx, r_en_idx));
-    }
-    else Serial.println("");
+    // Serial.printf("r_st_idx: %d, r_en_idx: %d\n", r_st_idx, r_en_idx);
+    Serial.printf("String parameters:: (%s, %s)", gcode_line.substring(x_st_idx, x_en_idx).c_str(), gcode_line.substring(y_st_idx, y_en_idx).c_str());
+
+    if (r_en_idx != -1 && r_st_idx != -1) Serial.printf(", radius: %s\n", gcode_line.substring(r_st_idx, r_en_idx).c_str());
+    else Serial.printf("\n");
 
     return parameters;
     
@@ -51,13 +46,7 @@ void interpret_gcode(String gcode_line)
 {
     double *parameters = read_coordinates(gcode_line);
 
-    Serial.print("Got parameters (X, Y, (R)):: ");
-    Serial.print(parameters[0]);
-    Serial.print(" ");
-    Serial.print(parameters[1]);
-    Serial.print(" ");
-    Serial.print(parameters[2]);
-    Serial.println(" ");
+    Serial.printf("Got parameters: (%4f, %4f), and radius: (%4f)\n", parameters[0], parameters[1], parameters[2]);
 
     if (gcode_line.startsWith("G00") || gcode_line.startsWith("G0"))
     {   
@@ -75,20 +64,36 @@ void interpret_gcode(String gcode_line)
 }
 
 
-void add_gcode_line_to_queue(String gcode_line)
+boolean is_gcode_line_valid(String gcode_line_received)
+{
+    if (!gcode_line_received.startsWith("G1") || !gcode_line_received.startsWith("G01") 
+    || !gcode_line_received.startsWith("G2") || !gcode_line_received.startsWith("G02")
+    || !gcode_line_received.startsWith("G0") || !gcode_line_received.startsWith("G00"))
+        return false;
+    
+    return true;
+}
+
+boolean add_gcode_line_to_queue(String gcode_line)
 {   
-    Serial.println("Adding GCODE line!: ");
-    Serial.println(gcode_line);
+    Serial.printf("Adding GCode line: %s\n", gcode_line.c_str());
 
     if (((END_GCODE_LINE_IDX + 1) % MAX_GCODE_LINES) == START_GCODE_LINE_IDX)
     {
-        Serial.println("Gcode Queue full!");
+        Serial.printf("GCode Queue full!\n");
         // Handling for full queue
-        return;
+        return false;
+    }
+    
+    if (!is_gcode_line_valid(gcode_line)) 
+    {
+        Serial.printf("No support for G-Code line: %s, skipping...\n", gcode_line.c_str());
+        return false;
     }
 
     GCODE_LINES[END_GCODE_LINE_IDX] = gcode_line;
     END_GCODE_LINE_IDX = (END_GCODE_LINE_IDX + 1) % MAX_GCODE_LINES; 
+    return true;
 }
 
 

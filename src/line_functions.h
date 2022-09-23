@@ -162,7 +162,7 @@ void draw_line_steps(int start_x_steps, int start_y_steps, int end_x_steps, int 
 }
 
 
-void draw_line_mm(int start_x_mm, int start_y_mm, int end_x_mm, int end_y_mm)
+void draw_line_mm(float start_x_mm, float start_y_mm, float end_x_mm, float end_y_mm)
 {
     int start_x_steps, start_y_steps, end_x_steps, end_y_steps;
     if (start_x_mm == INT_MIN) start_x_steps = STEPPER_X.currentPosition();
@@ -172,15 +172,12 @@ void draw_line_mm(int start_x_mm, int start_y_mm, int end_x_mm, int end_y_mm)
 
     end_x_steps = end_x_mm/STEP_QUANTA_MM;
     end_y_steps = end_y_mm/STEP_QUANTA_MM;
-    Serial.print("Drawing line (steps):: x1, y1, x2, y2:: ");
-    Serial.print(start_x_steps);
-    Serial.print(" ");
-    Serial.print(start_y_steps);
-    Serial.print(" ");
-    Serial.print(end_x_steps);
-    Serial.print(" ");
-    Serial.print(end_y_steps);
-    Serial.println(" ");
+
+    PRINT_EQUAL_BREAK;
+    Serial.printf("Current steps: (%d, %d)\n", STEPPER_X.currentPosition(), STEPPER_Y.currentPosition());
+    Serial.printf("Drawing line\nIn millimeters:: (%4f, %4f) -> (%4f, %4f)\n", start_x_mm, start_y_mm, end_x_mm, end_y_mm);
+    Serial.printf("In steps:: (%d, %d) -> (%d, %d)\n", start_x_steps, start_y_steps, end_x_steps, end_y_steps);
+    PRINT_EQUAL_BREAK;
     
     draw_line_steps_2(start_x_steps, start_y_steps, end_x_steps, end_y_steps);
     Serial.println("DONE!");

@@ -7,6 +7,8 @@
 #include <ESPAsyncWebServer.h>
 #include <AsyncElegantOTA.h>
 
+#define VERBOSE_LOGGING_IDX 0
+
 
 // Define pin connections
 const int DIRECTION_PIN_1 = D0;
@@ -27,7 +29,7 @@ AccelStepper STEPPER_Y(motorInterfaceType, STEP_PIN_2, DIRECTION_PIN_2);
 
 // const float STEP_QUANTA_MM = 0.2881;
 // const float STEP_QUANTA_MM = 0.1428;
-const float STEP_QUANTA_MM = 0.008925;
+const float STEP_QUANTA_MM = 0.08925;
 const int base_limit = 7000;
 const int X_STEPS_LOW_LIMIT = -base_limit;
 const int X_STEPS_HIGH_LIMIT = base_limit;
@@ -45,6 +47,9 @@ char REMOTE_IP[] = "192.161.10.10";
 uint16_t REMOTE_PORT = 8001;
 WiFiUDP udp_client;
 AsyncWebServer SERVER(SERVER_PORT);
+
+#define PRINT_EQUAL_BREAK Serial.println("====================================================================================================================================================");
+boolean DEBUG_SWITCHES[5] = {false, false, false, false, false};
 
 // Global vars
 const int MAX_GCODE_LINES = 500;

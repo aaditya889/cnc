@@ -19,7 +19,6 @@ void setup() {
     pinMode(STEP_PIN_2, OUTPUT);    
     pinMode(DIRECTION_PIN_2, OUTPUT);
     initialise_stepper_objects();
-
 }
 
 
@@ -54,7 +53,13 @@ void draw_circle(float radius)
 void loop() {
 
     delay(2000);
-
+    
+    while (1)
+    {
+        read_and_execute_gcode_lines();
+        // if (DEBUG_SWITCHES[VERBOSE_LOGGING_IDX]) Serial.printf("Verbose printing is ON!\n");
+        delay(1000);
+    }
     while (1)
     {
         // delay(3000);

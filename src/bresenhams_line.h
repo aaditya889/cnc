@@ -94,7 +94,7 @@ void plot_pixel(int x1, int y1, int x2, int y2, int dx, int dy, int decide)
 
     for (int i = 0; i <= dx; i++)
     {
-
+        yield();
         if (!decide)
         {
           plot_x = x1;
