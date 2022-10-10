@@ -67,7 +67,7 @@ void update_debug_switch(AsyncWebServerRequest *request)
   AsyncWebServerResponse *response;
   String inputMessage1;
   String inputMessage2;
-  short switch_id;
+  short switch_id = 0;
   boolean switch_state = false;
   char message[300];
 
