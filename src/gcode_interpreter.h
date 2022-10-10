@@ -4,7 +4,8 @@
 
 double *read_coordinates(String gcode_line)
 {
-    int curr_char = 0, x_st_idx = -1, x_en_idx = -1, y_st_idx = -1, y_en_idx = -1, r_st_idx = -1, r_en_idx = -1;
+    int x_st_idx = -1, x_en_idx = -1, y_st_idx = -1, y_en_idx = -1, r_st_idx = -1, r_en_idx = -1;
+    unsigned int curr_char = 0;
     double *parameters = (double *) malloc(sizeof(double) * 3);
 
     while (gcode_line.charAt(curr_char) != 'X') curr_char++;
