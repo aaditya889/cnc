@@ -29,15 +29,18 @@ void push_gcode_line(AsyncWebServerRequest *request)
 {
   AsyncWebServerResponse *response;
   String message;
-  char gcode_line[100];
-  const size_t bufferSize = JSON_OBJECT_SIZE(2) + JSON_OBJECT_SIZE(3) + JSON_OBJECT_SIZE(5) + JSON_OBJECT_SIZE(8) + 300;
-  DynamicJsonDocument payload(bufferSize);
-  deserializeJson(payload, request->getParam("body", true)->value());
+  String gcode_line;
 
-  if (payload["gcode_line"] != nullptr) strcpy(gcode_line, payload["gcode_line"]);
+  // //List all parameters (Compatibility)
+  // int args = request->args();
+  // for(int i=0;i<args;i++){
+  //   Serial.printf("ARG[%s]: %s\n", request->argName(i).c_str(), request->arg(i).c_str());
+  // }
+
+  gcode_line = request->getParam("gcode_line", true)->value();
 
   // sprintf(message, "Got GCODE line: %s", gcode_line);
-  if (add_gcode_line_to_queue(gcode_line)) message = "GCode line added";
+  if (add_gcode_line_to_queue(gcode_line.c_str())) message = "GCode line added";
   else message = "Unable to add the GCode line";
 
   response = request->beginResponse(200, "text/plain",  message);

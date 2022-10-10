@@ -11,10 +11,10 @@ void draw_bresenham_arc(int start_x_steps, int start_y_steps, int end_x_steps, i
     end_y_steps -= center_y_steps;
     int current_x_steps = start_x_steps;
     int current_y_steps = start_y_steps;
-    int *independent_dim, *dependent_dim, independent_dim_increment_step, dependent_dim_increment_step;
-    int x_increment_step, y_increment_step;
-    int previous_x_steps, previous_y_steps;
-    int decision_factor;
+    int *independent_dim, *dependent_dim, independent_dim_increment_step = 0, dependent_dim_increment_step = 0;
+    int x_increment_step = 0, y_increment_step = 0;
+    int previous_x_steps = 0, previous_y_steps = 0;
+    int decision_factor = 0;
 
     float current_slope = atan2((double)((current_y_steps)), (double)((current_x_steps)));
     float end_slope = atan2f(end_y_steps, end_x_steps);

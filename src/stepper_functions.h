@@ -9,19 +9,6 @@ void initialise_stepper_objects()
 
 void set_stepper_pin_directions(int x_direction, int y_direction)
 {
-    // Serial.println("D5.1");
-    // Serial.print("Current X, Y Positions:: ");
-    // Serial.print(STEPPER_X.currentPosition());
-    // Serial.print(" ");
-    // Serial.print(STEPPER_Y.currentPosition());
-    // Serial.println(" ");
-
-    // Serial.print("Going to (X, Y):: ");
-    // Serial.print(x_direction);
-    // Serial.print(" ");
-    // Serial.print(y_direction);
-    // Serial.println(" ");
-
     if (x_direction < 0) digitalWrite(DIRECTION_PIN_1, LOW);
     else digitalWrite(DIRECTION_PIN_1, HIGH);
 
@@ -32,21 +19,8 @@ void set_stepper_pin_directions(int x_direction, int y_direction)
 
 void run_stepper_breesenham(int x_steps, int y_steps)
 {
-    // Serial.print("Current X, Y positions:: ");
-    // Serial.print(STEPPER_X.currentPosition());
-    // Serial.print(" ");
-    // Serial.print(STEPPER_Y.currentPosition());
-    // Serial.println(" ");
-
     STEPPER_X.setCurrentPosition(STEPPER_X.currentPosition() + x_steps);
     STEPPER_Y.setCurrentPosition(STEPPER_Y.currentPosition() + y_steps);
-
-    // Serial.print("Going to (X, Y):: ");
-    // Serial.print(STEPPER_X.currentPosition());
-    // Serial.print(" ");
-    // Serial.print(STEPPER_Y.currentPosition());
-    // Serial.println(" ");
-
     x_steps = abs(x_steps);
     y_steps = abs(y_steps);
 
@@ -89,11 +63,6 @@ void run_stepper_for_arc_old(int x_steps, int y_steps)
 
     while (x_steps != 0 || y_steps != 0)
     {
-        // Serial.println("D4!");
-        // Serial.print("x_steps, y_steps:: ");
-        // Serial.print(x_steps);
-        // Serial.print(" ");
-        // Serial.println(y_steps);
 
         if (x_steps > 0) 
         {

@@ -1,4 +1,11 @@
+from hashlib import new
+import requests
+import json
+import time
+
+
 DEFAULT_GCODE_FILE_NAME = 'test_gcode.gcode'
+# DEFAULT_GCODE_FILE_NAME = 'pp.gcode'
 
 
 class GCode:
@@ -29,5 +36,13 @@ class GCode:
 
 
 x = GCode()
+idx = 0
 while (x.is_gcode_available()):
-	print(x.fetch_gcode_line())
+	new_gcode_line = x.fetch_gcode_line().strip()
+	if (not (new_gcode_line.startswith("G01") or new_gcode_line.startswith("G1") or new_gcode_line.startswith("G02") or new_gcode_line.startswith("G2") or new_gcode_line.startswith("G0") or new_gcode_line.startswith("G00"))):
+		continue
+	print(f"{idx}Trying to add gcode line: {new_gcode_line}")
+	gcode_payload = {"gcode_line": new_gcode_line}
+	print(requests.post(url="http://192.168.1.12/push_gcode_line", data=gcode_payload).text)
+	time.sleep(0.1)
+	idx += 1

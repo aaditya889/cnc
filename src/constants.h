@@ -29,8 +29,10 @@ AccelStepper STEPPER_Y(motorInterfaceType, STEP_PIN_2, DIRECTION_PIN_2);
 
 // const float STEP_QUANTA_MM = 0.2881;
 // const float STEP_QUANTA_MM = 0.1428;
-const float STEP_QUANTA_MM = 0.08925;
-const int base_limit = 7000;
+// const float STEP_QUANTA_MM = 0.008925*5;
+const double STEP_QUANTA_MM = 0.0087771496;
+
+const int base_limit = 70000;
 const int X_STEPS_LOW_LIMIT = -base_limit;
 const int X_STEPS_HIGH_LIMIT = base_limit;
 const int Y_STEPS_LOW_LIMIT = -base_limit;

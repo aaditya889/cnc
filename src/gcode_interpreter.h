@@ -4,7 +4,7 @@
 
 double *read_coordinates(String gcode_line)
 {
-    unsigned int curr_char = 0, x_st_idx = -1, x_en_idx = -1, y_st_idx = -1, y_en_idx = -1, r_st_idx = -1, r_en_idx = -1;
+    int curr_char = 0, x_st_idx = -1, x_en_idx = -1, y_st_idx = -1, y_en_idx = -1, r_st_idx = -1, r_en_idx = -1;
     double *parameters = (double *) malloc(sizeof(double) * 3);
 
     while (gcode_line.charAt(curr_char) != 'X') curr_char++;
@@ -32,10 +32,10 @@ double *read_coordinates(String gcode_line)
     else parameters[2] = INT_MIN;
 
     // Serial.printf("r_st_idx: %d, r_en_idx: %d\n", r_st_idx, r_en_idx);
-    Serial.printf("String parameters:: (%s, %s)", gcode_line.substring(x_st_idx, x_en_idx).c_str(), gcode_line.substring(y_st_idx, y_en_idx).c_str());
+    // Serial.printf("String parameters:: (%s, %s)", gcode_line.substring(x_st_idx, x_en_idx).c_str(), gcode_line.substring(y_st_idx, y_en_idx).c_str());
 
-    if (r_en_idx != -1 && r_st_idx != -1) Serial.printf(", radius: %s\n", gcode_line.substring(r_st_idx, r_en_idx).c_str());
-    else Serial.printf("\n");
+    // if (r_en_idx != -1 && r_st_idx != -1) Serial.printf(", radius: %s\n", gcode_line.substring(r_st_idx, r_en_idx).c_str());
+    // else Serial.printf("\n");
 
     return parameters;
     
@@ -46,7 +46,9 @@ void interpret_gcode(String gcode_line)
 {
     double *parameters = read_coordinates(gcode_line);
 
-    Serial.printf("Got parameters: (%4f, %4f), and radius: (%4f)\n", parameters[0], parameters[1], parameters[2]);
+    Serial.printf("Got parameters: (%4f, %4f)", parameters[0], parameters[1]);
+    if (parameters[2] != INT_MIN) Serial.printf(", and radius: %4f\n", parameters[2]);
+    else Serial.printf("\n");
 
     if (gcode_line.startsWith("G00") || gcode_line.startsWith("G0"))
     {   
@@ -66,11 +68,24 @@ void interpret_gcode(String gcode_line)
 
 boolean is_gcode_line_valid(String gcode_line_received)
 {
-    if (!gcode_line_received.startsWith("G1") || !gcode_line_received.startsWith("G01") 
-    || !gcode_line_received.startsWith("G2") || !gcode_line_received.startsWith("G02")
-    || !gcode_line_received.startsWith("G0") || !gcode_line_received.startsWith("G00"))
+    if (
+    !(
+        // Whitelist
+        gcode_line_received.startsWith("G1") 
+    ||  gcode_line_received.startsWith("G01") 
+    ||  gcode_line_received.startsWith("G2") 
+    ||  gcode_line_received.startsWith("G0") 
+    ||  gcode_line_received.startsWith("G02")
+    ||  gcode_line_received.startsWith("G00")
+    ) ||
+    (
+        // Blacklist
+        (gcode_line_received.indexOf("Z") != -1)
+    ||  false
+    )
+    )
         return false;
-    
+
     return true;
 }
 
