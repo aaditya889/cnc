@@ -6,6 +6,7 @@
 #include "line_functions.h"
 #include "gcode_interpreter.h"
 #include "wireless_utils.h"
+#include "z_axis.h"
 
 
 
@@ -25,8 +26,9 @@ void setup() {
 void loop() {
     while (1)
     {
-        read_and_execute_gcode_lines();
+        // read_and_execute_gcode_lines();
         // if (DEBUG_SWITCHES[VERBOSE_LOGGING_IDX]) Serial.printf("Verbose printing is ON!\n");
-        yield();
+        // yield();
+        test_z_axis();
     }
 }
