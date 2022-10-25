@@ -3,6 +3,21 @@
 
 void connect_AP(const char *ssid, const char *password)
 {
+    // Set your Static IP address
+  IPAddress local_IP(192, 168, 1, 69);
+  // Set your Gateway IP address
+  IPAddress gateway(192, 168, 1, 1);
+
+  IPAddress subnet(255, 255, 255, 0);
+  IPAddress primaryDNS(8, 8, 8, 8); // optional
+  IPAddress secondaryDNS(1, 1, 1, 1); // optional
+
+
+  // Configures static IP address
+  if (!WiFi.config(local_IP, gateway, subnet, primaryDNS, secondaryDNS)) {
+    Serial.println("STA Failed to configure");
+  }
+
 //  WiFi.mode(WIFI_OFF);        //Prevents reconnection issue (taking too long to connect)
 //  delay(1000);
 //  WiFi.setSleepMode(WIFI_NONE_SLEEP);

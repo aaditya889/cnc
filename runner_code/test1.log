@@ -1,0 +1,558 @@
+..
+Connected to Home889
+IP address: 192.168.1.69
+192.168.1.69HTTP server started
+Initialising Z Axis...
+Free heap space: 28440
+Adding GCode line: G0 Z10
+No support for G-Code line: G0 Z10, skipping...
+Free heap space: 28384
+Adding GCode line: G0 X49.6922 Y-37.4637
+End_idx: 1, Start_idx: 0
+Got parameters (original frame): (49.692200, -37.463700)
+Got parameters (transformed frame): (8.646770, 61.627934)
+Disengaging Z Axis...
+====================================================================================================================================================
+Current steps: (0, 0)
+Drawing line in steps:: (0, 0) -> (985, 7021)
+Drawing line (in mm) till:: (8.646770, 61.627934)
+Free heap space: 28080
+Adding GCode line: G02 X48.854 Y-38.3019 R0.8382
+End_idx: 2, Start_idx: 0
+Free heap space: 27576
+Adding GCode line: G02 X48.0158 Y-37.4637 R0.8382
+End_idx: 3, Start_idx: 0
+DONE!
+Got parameters (original frame): (48.854000, -38.301900), and radius: 0.838200
+Got parameters (transformed frame): (7.461391, 61.627934)
+Engaging Z Axis...
+====================================================================================================================================================
+Current steps: (985, 7021)
+Going from (985, 7021) -> (850, 7021), with center at (917, 6953) and radius = (95)...
+Free heap space: 27576
+Adding GCode line: G02 X48.854 Y-36.6255 R0.8382
+End_idx: 4, Start_idx: 1
+Stopped at:: (848, 7018)
+DONE!
+Got parameters (original frame): (48.015800, -37.463700), and radius: 0.838200
+Got parameters (transformed frame): (7.461391, 60.442554)
+Engaging Z Axis...
+====================================================================================================================================================
+Current steps: (848, 7018)
+Going from (848, 7018) -> (850, 6886), with center at (918, 6953) and radius = (95)...
+Stopped at:: (853, 6884)
+DONE!
+Got parameters (original frame): (48.854000, -36.625500), and radius: 0.838200
+Got parameters (transformed frame): (8.646772, 60.442551)
+Engaging Z Axis...
+====================================================================================================================================================
+Current steps: (853, 6884)
+Going from (853, 6884) -> (985, 6886), with center at (917, 6954) and radius = (95)...
+Stopped at:: (986, 6889)
+DONE!
+Free heap space: 27648
+Adding GCode line: G02 X49.6922 Y-37.4637 R0.8382
+End_idx: 5, Start_idx: 4
+Got parameters (original frame): (49.692200, -37.463700), and radius: 0.838200
+Got parameters (transformed frame): (8.646770, 61.627934)
+Engaging Z Axis...
+====================================================================================================================================================
+Current steps: (986, 6889)
+Going from (986, 6889) -> (985, 7021), with center at (916, 6954) and radius = (95)...
+Stopped at:: (982, 7022)
+DONE!
+Free heap space: 27656
+Adding GCode line: G1 X49.6922 Y-37.4637
+End_idx: 6, Start_idx: 5
+Got parameters (original frame): (49.692200, -37.463700)
+Got parameters (transformed frame): (8.646770, 61.627934)
+Engaging Z Axis...
+====================================================================================================================================================
+Current steps: (982, 7022)
+Drawing line in steps:: (982, 7022) -> (985, 7021)
+Drawing line (in mm) till:: (8.646770, 61.627934)
+DONE!
+Free heap space: 27656
+Adding GCode line: G0 X47.1522 Y-37.4637
+End_idx: 7, Start_idx: 6
+Got parameters (original frame): (47.152200, -37.463700)
+Got parameters (transformed frame): (6.850739, 59.831902)
+Disengaging Z Axis...
+====================================================================================================================================================
+Current steps: (985, 7021)
+Drawing line in steps:: (985, 7021) -> (780, 6816)
+Drawing line (in mm) till:: (6.850739, 59.831902)
+DONE!
+Free heap space: 27648
+Adding GCode line: G02 X46.314 Y-38.3019 R0.8382
+End_idx: 8, Start_idx: 7
+Got parameters (original frame): (46.314000, -38.301900), and radius: 0.838200
+Got parameters (transformed frame): (5.665356, 59.831898)
+Engaging Z Axis...
+====================================================================================================================================================
+Current steps: (780, 6816)
+Going from (780, 6816) -> (645, 6816), with center at (712, 6748) and radius = (95)...
+Stopped at:: (643, 6813)
+DONE!
+Free heap space: 27648
+Adding GCode line: G02 X45.4758 Y-37.4637 R0.8382
+End_idx: 9, Start_idx: 8
+Got parameters (original frame): (45.475800, -37.463700), and radius: 0.838200
+Got parameters (transformed frame): (5.665356, 58.646519)
+Engaging Z Axis...
+====================================================================================================================================================
+Current steps: (643, 6813)
+Going from (643, 6813) -> (645, 6681), with center at (713, 6748) and radius = (95)...
+Stopped at:: (648, 6679)
+DONE!
+Free heap space: 27648
+Adding GCode line: G02 X46.314 Y-36.6255 R0.8382
+End_idx: 10, Start_idx: 9
+Got parameters (original frame): (46.314000, -36.625500), and radius: 0.838200
+Got parameters (transformed frame): (6.850737, 58.646515)
+Engaging Z Axis...
+====================================================================================================================================================
+Current steps: (648, 6679)
+Going from (648, 6679) -> (780, 6681), with center at (712, 6749) and radius = (95)...
+Stopped at:: (781, 6684)
+DONE!
+Free heap space: 27648
+Adding GCode line: G02 X47.1522 Y-37.4637 R0.8382
+End_idx: 11, Start_idx: 10
+Got parameters (original frame): (47.152200, -37.463700), and radius: 0.838200
+Got parameters (transformed frame): (6.850739, 59.831902)
+Engaging Z Axis...
+====================================================================================================================================================
+Current steps: (781, 6684)
+Going from (781, 6684) -> (780, 6816), with center at (712, 6750) and radius = (95)...
+Stopped at:: (780, 6816)
+DONE!
+Free heap space: 27656
+Adding GCode line: G1 X47.1522 Y-37.4637
+End_idx: 12, Start_idx: 11
+Got parameters (original frame): (47.152200, -37.463700)
+Got parameters (transformed frame): (6.850739, 59.831902)
+Engaging Z Axis...
+====================================================================================================================================================
+Current steps: (780, 6816)
+Drawing line in steps:: (780, 6816) -> (780, 6816)
+Drawing line (in mm) till:: (6.850739, 59.831902)
+DONE!
+Free heap space: 27656
+Adding GCode line: G0 X44.6122 Y-37.4637
+End_idx: 13, Start_idx: 12
+Got parameters (original frame): (44.612200, -37.463700)
+Got parameters (transformed frame): (5.054705, 58.035866)
+Disengaging Z Axis...
+====================================================================================================================================================
+Current steps: (780, 6816)
+Drawing line in steps:: (780, 6816) -> (575, 6612)
+Drawing line (in mm) till:: (5.054705, 58.035866)
+DONE!
+Free heap space: 27648
+Adding GCode line: G02 X43.774 Y-38.3019 R0.8382
+End_idx: 14, Start_idx: 13
+Got parameters (original frame): (43.774000, -38.301900), and radius: 0.838200
+Got parameters (transformed frame): (3.869322, 58.035866)
+Engaging Z Axis...
+====================================================================================================================================================
+Current steps: (575, 6612)
+Going from (575, 6612) -> (440, 6612), with center at (507, 6544) and radius = (95)...
+Stopped at:: (438, 6609)
+DONE!
+Free heap space: 27648
+Adding GCode line: G02 X42.9358 Y-37.4637 R0.8382
+End_idx: 15, Start_idx: 14
+Got parameters (original frame): (42.935800, -37.463700), and radius: 0.838200
+Got parameters (transformed frame): (3.869320, 56.850483)
+Engaging Z Axis...
+====================================================================================================================================================
+Current steps: (438, 6609)
+Going from (438, 6609) -> (440, 6477), with center at (508, 6544) and radius = (95)...
+Stopped at:: (443, 6475)
+DONE!
+Free heap space: 27648
+Adding GCode line: G02 X43.774 Y-36.6255 R0.8382
+End_idx: 16, Start_idx: 15
+Got parameters (original frame): (43.774000, -36.625500), and radius: 0.838200
+Got parameters (transformed frame): (5.054703, 56.850483)
+Engaging Z Axis...
+====================================================================================================================================================
+Current steps: (443, 6475)
+Going from (443, 6475) -> (575, 6477), with center at (508, 6544) and radius = (94)...
+Stopped at:: (577, 6480)
+DONE!
+Free heap space: 27648
+Adding GCode line: G02 X44.6122 Y-37.4637 R0.8382
+End_idx: 17, Start_idx: 16
+Got parameters (original frame): (44.612200, -37.463700), and radius: 0.838200
+Got parameters (transformed frame): (5.054705, 58.035866)
+Engaging Z Axis...
+====================================================================================================================================================
+Current steps: (577, 6480)
+Going from (577, 6480) -> (575, 6612), with center at (507, 6545) and radius = (95)...
+Stopped at:: (572, 6614)
+DONE!
+Free heap space: 27656
+Adding GCode line: G1 X44.6122 Y-37.4637
+End_idx: 18, Start_idx: 17
+Got parameters (original frame): (44.612200, -37.463700)
+Got parameters (transformed frame): (5.054705, 58.035866)
+Engaging Z Axis...
+====================================================================================================================================================
+Current steps: (572, 6614)
+Drawing line in steps:: (572, 6614) -> (575, 6612)
+Drawing line (in mm) till:: (5.054705, 58.035866)
+DONE!
+Free heap space: 27656
+Adding GCode line: G0 X42.0722 Y-37.4637
+End_idx: 19, Start_idx: 18
+Got parameters (original frame): (42.072200, -37.463700)
+Got parameters (transformed frame): (3.258671, 56.239834)
+Disengaging Z Axis...
+====================================================================================================================================================
+Current steps: (575, 6612)
+Drawing line in steps:: (575, 6612) -> (371, 6407)
+Drawing line (in mm) till:: (3.258671, 56.239834)
+DONE!
+Free heap space: 27648
+Adding GCode line: G02 X41.234 Y-38.3019 R0.8382
+End_idx: 20, Start_idx: 19
+Got parameters (original frame): (41.234000, -38.301900), and radius: 0.838200
+Got parameters (transformed frame): (2.073290, 56.239830)
+Engaging Z Axis...
+====================================================================================================================================================
+Current steps: (371, 6407)
+Going from (371, 6407) -> (236, 6407), with center at (303, 6339) and radius = (95)...
+Stopped at:: (234, 6404)
+DONE!
+Free heap space: 27648
+Adding GCode line: G02 X40.3958 Y-37.4637 R0.8382
+End_idx: 21, Start_idx: 20
+Got parameters (original frame): (40.395800, -37.463700), and radius: 0.838200
+Got parameters (transformed frame): (2.073288, 55.054451)
+Engaging Z Axis...
+====================================================================================================================================================
+Current steps: (234, 6404)
+Going from (234, 6404) -> (236, 6272), with center at (304, 6339) and radius = (95)...
+Stopped at:: (239, 6270)
+DONE!
+Free heap space: 27648
+Adding GCode line: G02 X41.234 Y-36.6255 R0.8382
+End_idx: 22, Start_idx: 21
+Got parameters (original frame): (41.234000, -36.625500), and radius: 0.838200
+Got parameters (transformed frame): (3.258671, 55.054451)
+Engaging Z Axis...
+====================================================================================================================================================
+Current steps: (239, 6270)
+Going from (239, 6270) -> (371, 6272), with center at (303, 6340) and radius = (95)...
+Stopped at:: (372, 6275)
+DONE!
+Free heap space: 27648
+Adding GCode line: G02 X42.0722 Y-37.4637 R0.8382
+End_idx: 23, Start_idx: 22
+Got parameters (original frame): (42.072200, -37.463700), and radius: 0.838200
+Got parameters (transformed frame): (3.258671, 56.239834)
+Engaging Z Axis...
+====================================================================================================================================================
+Current steps: (372, 6275)
+Going from (372, 6275) -> (371, 6407), with center at (302, 6340) and radius = (95)...
+Stopped at:: (368, 6408)
+DONE!
+Free heap space: 27656
+Adding GCode line: G1 X42.0722 Y-37.4637
+End_idx: 24, Start_idx: 23
+Got parameters (original frame): (42.072200, -37.463700)
+Got parameters (transformed frame): (3.258671, 56.239834)
+Engaging Z Axis...
+====================================================================================================================================================
+Current steps: (368, 6408)
+Drawing line in steps:: (368, 6408) -> (371, 6407)
+Drawing line (in mm) till:: (3.258671, 56.239834)
+DONE!
+Free heap space: 27656
+Adding GCode line: G0 X39.5322 Y-37.4637
+End_idx: 25, Start_idx: 24
+Got parameters (original frame): (39.532200, -37.463700)
+Got parameters (transformed frame): (1.462635, 54.443798)
+Disengaging Z Axis...
+====================================================================================================================================================
+Current steps: (371, 6407)
+Drawing line in steps:: (371, 6407) -> (166, 6202)
+Drawing line (in mm) till:: (1.462635, 54.443798)
+DONE!
+Free heap space: 27648
+Adding GCode line: G02 X38.694 Y-38.3019 R0.8382
+End_idx: 26, Start_idx: 25
+Got parameters (original frame): (38.694000, -38.301900), and radius: 0.838200
+Got parameters (transformed frame): (0.277256, 54.443798)
+Engaging Z Axis...
+====================================================================================================================================================
+Current steps: (166, 6202)
+Going from (166, 6202) -> (31, 6202), with center at (98, 6134) and radius = (95)...
+Stopped at:: (29, 6199)
+DONE!
+Free heap space: 27648
+Adding GCode line: G02 X37.8558 Y-37.4637 R0.8382
+End_idx: 27, Start_idx: 26
+Got parameters (original frame): (37.855800, -37.463700), and radius: 0.838200
+Got parameters (transformed frame): (0.277254, 53.258415)
+Engaging Z Axis...
+====================================================================================================================================================
+Current steps: (29, 6199)
+Going from (29, 6199) -> (31, 6067), with center at (99, 6134) and radius = (95)...
+Stopped at:: (34, 6065)
+DONE!
+Free heap space: 27648
+Adding GCode line: G02 X38.694 Y-36.6255 R0.8382
+End_idx: 28, Start_idx: 27
+Got parameters (original frame): (38.694000, -36.625500), and radius: 0.838200
+Got parameters (transformed frame): (1.462637, 53.258415)
+Engaging Z Axis...
+====================================================================================================================================================
+Current steps: (34, 6065)
+Going from (34, 6065) -> (166, 6067), with center at (98, 6135) and radius = (95)...
+Stopped at:: (167, 6070)
+DONE!
+Free heap space: 27648
+Adding GCode line: G02 X39.5322 Y-37.4637 R0.8382
+End_idx: 29, Start_idx: 28
+Got parameters (original frame): (39.532200, -37.463700), and radius: 0.838200
+Got parameters (transformed frame): (1.462635, 54.443798)
+Engaging Z Axis...
+====================================================================================================================================================
+Current steps: (167, 6070)
+Going from (167, 6070) -> (166, 6202), with center at (98, 6136) and radius = (95)...
+Stopped at:: (166, 6202)
+DONE!
+Free heap space: 27656
+Adding GCode line: G1 X39.5322 Y-37.4637
+End_idx: 30, Start_idx: 29
+Got parameters (original frame): (39.532200, -37.463700)
+Got parameters (transformed frame): (1.462635, 54.443798)
+Engaging Z Axis...
+====================================================================================================================================================
+Current steps: (166, 6202)
+Drawing line in steps:: (166, 6202) -> (166, 6202)
+Drawing line (in mm) till:: (1.462635, 54.443798)
+DONE!
+Free heap space: 27656
+Adding GCode line: G0 X36.9922 Y-37.4637
+End_idx: 31, Start_idx: 30
+Got parameters (original frame): (36.992200, -37.463700)
+Got parameters (transformed frame): (-0.333399, 52.647766)
+Disengaging Z Axis...
+====================================================================================================================================================
+Current steps: (166, 6202)
+Drawing line in steps:: (166, 6202) -> (-37, 5998)
+Drawing line (in mm) till:: (-0.333399, 52.647766)
+DONE!
+Free heap space: 27648
+Adding GCode line: G02 X36.154 Y-38.3019 R0.8382
+End_idx: 32, Start_idx: 31
+Got parameters (original frame): (36.154000, -38.301900), and radius: 0.838200
+Got parameters (transformed frame): (-1.518780, 52.647762)
+Engaging Z Axis...
+====================================================================================================================================================
+Current steps: (-37, 5998)
+Going from (-37, 5998) -> (-173, 5998), with center at (-105, 5931) and radius = (95)...
+Stopped at:: (-174, 5996)
+DONE!
+Free heap space: 27648
+Adding GCode line: G02 X35.3158 Y-37.4637 R0.8382
+End_idx: 33, Start_idx: 32
+Got parameters (original frame): (35.315800, -37.463700), and radius: 0.838200
+Got parameters (transformed frame): (-1.518780, 51.462383)
+Engaging Z Axis...
+====================================================================================================================================================
+Current steps: (-174, 5996)
+Going from (-174, 5996) -> (-173, 5863), with center at (-104, 5930) and radius = (96)...
+Stopped at:: (-173, 5863)
+DONE!
+Free heap space: 27648
+Adding GCode line: G02 X36.154 Y-36.6255 R0.8382
+End_idx: 34, Start_idx: 33
+Got parameters (original frame): (36.154000, -36.625500), and radius: 0.838200
+Got parameters (transformed frame): (-0.333399, 51.462379)
+Engaging Z Axis...
+====================================================================================================================================================
+Current steps: (-173, 5863)
+Going from (-173, 5863) -> (-37, 5863), with center at (-105, 5930) and radius = (95)...
+Stopped at:: (-36, 5865)
+DONE!
+Free heap space: 27648
+Adding GCode line: G02 X36.9922 Y-37.4637 R0.8382
+End_idx: 35, Start_idx: 34
+Got parameters (original frame): (36.992200, -37.463700), and radius: 0.838200
+Got parameters (transformed frame): (-0.333399, 52.647766)
+Engaging Z Axis...
+====================================================================================================================================================
+Current steps: (-36, 5865)
+Going from (-36, 5865) -> (-37, 5998), with center at (-105, 5930) and radius = (95)...
+Stopped at:: (-40, 5999)
+DONE!
+Free heap space: 27656
+Adding GCode line: G1 X36.9922 Y-37.4637
+End_idx: 36, Start_idx: 35
+Got parameters (original frame): (36.992200, -37.463700)
+Got parameters (transformed frame): (-0.333399, 52.647766)
+Engaging Z Axis...
+====================================================================================================================================================
+Current steps: (-40, 5999)
+Drawing line in steps:: (-40, 5999) -> (-37, 5998)
+Drawing line (in mm) till:: (-0.333399, 52.647766)
+DONE!
+Free heap space: 27656
+Adding GCode line: G0 X34.4522 Y-37.4637
+End_idx: 37, Start_idx: 36
+Got parameters (original frame): (34.452200, -37.463700)
+Got parameters (transformed frame): (-2.129431, 50.851730)
+Disengaging Z Axis...
+====================================================================================================================================================
+Current steps: (-37, 5998)
+Drawing line in steps:: (-37, 5998) -> (-242, 5793)
+Drawing line (in mm) till:: (-2.129431, 50.851730)
+DONE!
+Free heap space: 27648
+Adding GCode line: G02 X33.614 Y-38.3019 R0.8382
+End_idx: 38, Start_idx: 37
+Got parameters (original frame): (33.614000, -38.301900), and radius: 0.838200
+Got parameters (transformed frame): (-3.314814, 50.851730)
+Engaging Z Axis...
+====================================================================================================================================================
+Current steps: (-242, 5793)
+Going from (-242, 5793) -> (-377, 5793), with center at (-310, 5726) and radius = (95)...
+Stopped at:: (-377, 5793)
+DONE!
+Free heap space: 27648
+Adding GCode line: G02 X32.7758 Y-37.4637 R0.8382
+End_idx: 39, Start_idx: 38
+Got parameters (original frame): (32.775800, -37.463700), and radius: 0.838200
+Got parameters (transformed frame): (-3.314816, 49.666348)
+Engaging Z Axis...
+====================================================================================================================================================
+Current steps: (-377, 5793)
+Going from (-377, 5793) -> (-377, 5658), with center at (-309, 5725) and radius = (95)...
+Stopped at:: (-374, 5656)
+DONE!
+Free heap space: 27624
+Adding GCode line: G02 X33.614 Y-36.6255 R0.8382
+End_idx: 40, Start_idx: 39
+Got parameters (original frame): (33.614000, -36.625500), and radius: 0.838200
+Got parameters (transformed frame): (-2.129433, 49.666348)
+Engaging Z Axis...
+====================================================================================================================================================
+Current steps: (-374, 5656)
+Going from (-374, 5656) -> (-242, 5658), with center at (-309, 5726) and radius = (95)...
+Stopped at:: (-240, 5661)
+DONE!
+Free heap space: 27648
+Adding GCode line: G02 X34.4522 Y-37.4637 R0.8382
+End_idx: 41, Start_idx: 40
+Got parameters (original frame): (34.452200, -37.463700), and radius: 0.838200
+Got parameters (transformed frame): (-2.129431, 50.851730)
+Engaging Z Axis...
+====================================================================================================================================================
+Current steps: (-240, 5661)
+Going from (-240, 5661) -> (-242, 5793), with center at (-309, 5725) and radius = (94)...
+Stopped at:: (-245, 5794)
+DONE!
+Free heap space: 27656
+Adding GCode line: G1 X34.4522 Y-37.4637
+End_idx: 42, Start_idx: 41
+Got parameters (original frame): (34.452200, -37.463700)
+Got parameters (transformed frame): (-2.129431, 50.851730)
+Engaging Z Axis...
+====================================================================================================================================================
+Current steps: (-245, 5794)
+Drawing line in steps:: (-245, 5794) -> (-242, 5793)
+Drawing line (in mm) till:: (-2.129431, 50.851730)
+DONE!
+Free heap space: 27656
+Adding GCode line: G0 X31.9122 Y-37.4637
+End_idx: 43, Start_idx: 42
+Got parameters (original frame): (31.912200, -37.463700)
+Got parameters (transformed frame): (-3.925465, 49.055698)
+Disengaging Z Axis...
+====================================================================================================================================================
+Current steps: (-242, 5793)
+Drawing line in steps:: (-242, 5793) -> (-447, 5589)
+Drawing line (in mm) till:: (-3.925465, 49.055698)
+DONE!
+Free heap space: 27648
+Adding GCode line: G02 X31.074 Y-38.3019 R0.8382
+End_idx: 44, Start_idx: 43
+Got parameters (original frame): (31.074000, -38.301900), and radius: 0.838200
+Got parameters (transformed frame): (-5.110847, 49.055695)
+Engaging Z Axis...
+====================================================================================================================================================
+Current steps: (-447, 5589)
+Going from (-447, 5589) -> (-582, 5589), with center at (-514, 5521) and radius = (95)...
+Stopped at:: (-583, 5586)
+DONE!
+Free heap space: 27648
+Adding GCode line: G02 X30.2358 Y-37.4637 R0.8382
+End_idx: 45, Start_idx: 44
+Got parameters (original frame): (30.235800, -37.463700), and radius: 0.838200
+Got parameters (transformed frame): (-5.110847, 47.870316)
+Engaging Z Axis...
+====================================================================================================================================================
+Current steps: (-583, 5586)
+Going from (-583, 5586) -> (-582, 5453), with center at (-513, 5520) and radius = (96)...
+Stopped at:: (-582, 5453)
+DONE!
+Free heap space: 27648
+Adding GCode line: G02 X31.074 Y-36.6255 R0.8382
+End_idx: 46, Start_idx: 45
+Got parameters (original frame): (31.074000, -36.625500), and radius: 0.838200
+Got parameters (transformed frame): (-3.925467, 47.870316)
+Engaging Z Axis...
+====================================================================================================================================================
+Current steps: (-582, 5453)
+Going from (-582, 5453) -> (-447, 5453), with center at (-515, 5521) and radius = (95)...
+Stopped at:: (-446, 5456)
+DONE!
+Free heap space: 27648
+Adding GCode line: G02 X31.9122 Y-37.4637 R0.8382
+End_idx: 47, Start_idx: 46
+Got parameters (original frame): (31.912200, -37.463700), and radius: 0.838200
+Got parameters (transformed frame): (-3.925465, 49.055698)
+Engaging Z Axis...
+====================================================================================================================================================
+Current steps: (-446, 5456)
+Going from (-446, 5456) -> (-447, 5589), with center at (-515, 5521) and radius = (95)...
+Stopped at:: (-450, 5590)
+DONE!
+Free heap space: 27656
+Adding GCode line: G1 X31.9122 Y-37.4637
+End_idx: 48, Start_idx: 47
+Got parameters (original frame): (31.912200, -37.463700)
+Got parameters (transformed frame): (-3.925465, 49.055698)
+Engaging Z Axis...
+====================================================================================================================================================
+Current steps: (-450, 5590)
+Drawing line in steps:: (-450, 5590) -> (-447, 5589)
+Drawing line (in mm) till:: (-3.925465, 49.055698)
+DONE!
+Free heap space: 27656
+Adding GCode line: G0 X29.3722 Y-37.4637
+End_idx: 49, Start_idx: 48
+Got parameters (original frame): (29.372200, -37.463700)
+Got parameters (transformed frame): (-5.721500, 47.259663)
+Disengaging Z Axis...
+====================================================================================================================================================
+Current steps: (-447, 5589)
+Drawing line in steps:: (-447, 5589) -> (-651, 5384)
+Drawing line (in mm) till:: (-5.721500, 47.259663)
+DONE!
+Free heap space: 27648
+Adding GCode line: G02 X28.534 Y-38.3019 R0.8382
+End_idx: 50, Start_idx: 49
+Got parameters (original frame): (28.534000, -38.301900), and radius: 0.838200
+Got parameters (transformed frame): (-6.906879, 47.259663)
+Engaging Z Axis...
+====================================================================================================================================================
+Current steps: (-651, 5384)
+Going from (-651, 5384) -> (-786, 5384), with center at (-719, 5317) and radius = (95)...
+Stopped at:: (-786, 5384)
+DONE!

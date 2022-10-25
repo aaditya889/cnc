@@ -108,9 +108,8 @@ void draw_line_mm(float start_x_mm, float start_y_mm, float end_x_mm, float end_
 
     PRINT_EQUAL_BREAK;
     Serial.printf("Current steps: (%ld, %ld)\n", STEPPER_X.currentPosition(), STEPPER_Y.currentPosition());
-    Serial.printf("Drawing line (in mm) till:: (%4f, %4f)\n", end_x_mm, end_y_mm);
     Serial.printf("Drawing line in steps:: (%d, %d) -> (%d, %d)\n", start_x_steps, start_y_steps, end_x_steps, end_y_steps);
-    PRINT_EQUAL_BREAK;
+    Serial.printf("Drawing line (in mm) till:: (%4f, %4f)\n", end_x_mm, end_y_mm);
     
     draw_bresenham_line_steps(start_x_steps, start_y_steps, end_x_steps, end_y_steps);
     Serial.println("DONE!");

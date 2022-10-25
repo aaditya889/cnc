@@ -15,10 +15,12 @@ String processor(const String& var){
   if(var == "BUTTONPLACEHOLDER"){
     String buttons = "";
     buttons += "<h4>Enable Verbose Logging</h4><label class=\"switch\"><input type=\"checkbox\" onchange=\"toggleCheckbox(this)\" id=\"0\" " + get_debug_switch_value(0) + "><span class=\"slider\"></span></label>";
-    buttons += "<h4>Debug Switch 1</h4><label class=\"switch\"><input type=\"checkbox\" onchange=\"toggleCheckbox(this)\" id=\"1\" " + get_debug_switch_value(1) + "><span class=\"slider\"></span></label>";
+    buttons += "<h4>Is Inches?</h4><label class=\"switch\"><input type=\"checkbox\" onchange=\"toggleCheckbox(this)\" id=\"1\" " + get_debug_switch_value(1) + "><span class=\"slider\"></span></label>";
     buttons += "<h4>Debug Switch 2</h4><label class=\"switch\"><input type=\"checkbox\" onchange=\"toggleCheckbox(this)\" id=\"2\" " + get_debug_switch_value(2) + "><span class=\"slider\"></span></label>";
     buttons += "<h4>Debug Switch 3</h4><label class=\"switch\"><input type=\"checkbox\" onchange=\"toggleCheckbox(this)\" id=\"3\" " + get_debug_switch_value(3) + "><span class=\"slider\"></span></label>";
     buttons += "<h4>Debug Switch 4</h4><label class=\"switch\"><input type=\"checkbox\" onchange=\"toggleCheckbox(this)\" id=\"4\" " + get_debug_switch_value(4) + "><span class=\"slider\"></span></label>";
+
+    buttons += "<h4>Buttons</h4><button class=\"btn btn-danger\" type=\"button\" onclick=\"triggerButton(this)\" id=\"10\" >Healthcheck</button>";
     return buttons;
   }
   return String();
@@ -28,7 +30,7 @@ String processor(const String& var){
 void push_gcode_line(AsyncWebServerRequest *request)
 {
   AsyncWebServerResponse *response;
-  String message;
+  char message[100];
   String gcode_line;
 
   // //List all parameters (Compatibility)
@@ -37,15 +39,27 @@ void push_gcode_line(AsyncWebServerRequest *request)
   //   Serial.printf("ARG[%s]: %s\n", request->argName(i).c_str(), request->arg(i).c_str());
   // }
 
+  Serial.printf("Free heap space: %d\n", ESP.getFreeHeap());
   gcode_line = request->getParam("gcode_line", true)->value();
 
   // sprintf(message, "Got GCODE line: %s", gcode_line);
-  if (add_gcode_line_to_queue(gcode_line.c_str())) message = "GCode line added";
-  else message = "Unable to add the GCode line";
+  if (add_gcode_line_to_queue(gcode_line.c_str())) sprintf(message, "GCode line added");
+  else sprintf(message, "Unable to add the GCode line");
+
+  // sprintf(message, "yoyo!");
 
   response = request->beginResponse(200, "text/plain",  message);
   response->addHeader("Access-Control-Allow-Origin", "*");
+  // response->addHeader("Connection", "close");
   request->send(response);
+  // request->client()->stop();
+  // while (request->client()->connected()) 
+  // {
+  //   Serial.printf("Waiting for the connection to close...\n");
+  //   delay(1);
+  // }
+  // request->client()->close();
+  // delete request;
 }
 
 
@@ -53,7 +67,7 @@ void cnc_healthcheck(AsyncWebServerRequest *request)
 {
   AsyncWebServerResponse *response;
   char message[300];
-
+  Serial.printf("Healthcheck Passed!\n");
   sprintf(message, "Healthcheck Passed!\nIP used by the CNC Machine:: %s\n", WiFi.localIP().toString().c_str());
   
   response = request->beginResponse(200, "text/plain",  message);
@@ -94,15 +108,6 @@ void update_debug_switch(AsyncWebServerRequest *request)
 // }
 
 
-void send_udp(char *message)
-{
-  // udp send takes around 700 - 750 microseconds
-  udp_client.beginPacket(REMOTE_IP, REMOTE_PORT);
-  udp_client.write(message, strlen(message));
-  udp_client.endPacket();
-}
-
-
 void setup_server()
 {
   // Route for root / web page
@@ -115,6 +120,15 @@ void setup_server()
   SERVER.on("/cnc_healthcheck", HTTP_GET, [](AsyncWebServerRequest *request){ cnc_healthcheck(request); });
   SERVER.on("/update_debug_switch", HTTP_GET, [](AsyncWebServerRequest *request){ update_debug_switch(request); });
   // SERVER.onNotFound(api_not_found);
+}
+
+
+void send_udp(char *message)
+{
+  // udp send takes around 700 - 750 microseconds
+  udp_client.beginPacket(REMOTE_IP, REMOTE_PORT);
+  udp_client.write(message, strlen(message));
+  udp_client.endPacket();
 }
 
 

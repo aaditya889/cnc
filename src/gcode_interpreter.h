@@ -2,6 +2,7 @@
 #include <math.h>
 
 
+
 double *read_coordinates(String gcode_line)
 {
     int x_st_idx = -1, x_en_idx = -1, y_st_idx = -1, y_en_idx = -1, r_st_idx = -1, r_en_idx = -1;
@@ -46,24 +47,54 @@ double *read_coordinates(String gcode_line)
 void interpret_gcode(String gcode_line)
 {
     double *parameters = read_coordinates(gcode_line);
-
-    Serial.printf("Got parameters: (%4f, %4f)", parameters[0], parameters[1]);
+    
+    Serial.printf("Got parameters (original frame): (%4f, %4f)", parameters[0], parameters[1]);
     if (parameters[2] != INT_MIN) Serial.printf(", and radius: %4f\n", parameters[2]);
     else Serial.printf("\n");
 
-    if (gcode_line.startsWith("G00") || gcode_line.startsWith("G0"))
+    BLA::Matrix<2> transformed_coordinates = ROTATION_MATRIX * (BLA::Matrix<2>) {parameters[0], parameters[1]};
+    parameters[0] = transformed_coordinates(0);
+    parameters[1] = transformed_coordinates(1);
+
+    if (DEBUG_SWITCHES[IS_INCHES_IDX]) 
+    {
+        if (DEBUG_SWITCHES[VERBOSE_LOGGING_IDX]) Serial.printf("Converting inches to mm...\n");
+        parameters[0] *= INCH_TO_MM_FACTOR;
+        parameters[1] *= INCH_TO_MM_FACTOR;
+        if (parameters[2] != INT_MIN) parameters[2] *= INCH_TO_MM_FACTOR; 
+    }
+
+    Serial.printf("Got parameters (transformed frame): (%4f, %4f)\n", parameters[0], parameters[1]);
+
+
+    if (gcode_line.startsWith("G00 ") || gcode_line.startsWith("G0 "))
     {   
         // Place the tool without engaging it!
+        disengage_z_axis();
+        // Take care of the vibrations
+        delay(100);
         ;
-    }
-    if (gcode_line.startsWith("G01") || gcode_line.startsWith("G1"))
-    {
         draw_line_mm(INT_MIN, INT_MIN, parameters[0], parameters[1]);
     }
-    if (gcode_line.startsWith("G02") || gcode_line.startsWith("G2"))
+    else if (gcode_line.startsWith("G01 ") || gcode_line.startsWith("G1 "))
     {
+        engage_z_axis();
+        ;
+        delay(100);
+        // Take care of the vibrations
+        
+        draw_line_mm(INT_MIN, INT_MIN, parameters[0], parameters[1]);
+    }
+    else if (gcode_line.startsWith("G02 ") || gcode_line.startsWith("G2 "))
+    {
+        engage_z_axis();
+        ;
+        delay(100);
+        // Take care of the vibrations
+        
         draw_arc_radius_mm(INT_MIN, INT_MIN, parameters[0], parameters[1], parameters[2]);
     }
+    free(parameters);
 }
 
 
@@ -93,6 +124,7 @@ boolean is_gcode_line_valid(String gcode_line_received)
 boolean add_gcode_line_to_queue(String gcode_line)
 {   
     Serial.printf("Adding GCode line: %s\n", gcode_line.c_str());
+    // free()
 
     if (((END_GCODE_LINE_IDX + 1) % MAX_GCODE_LINES) == START_GCODE_LINE_IDX)
     {
@@ -107,8 +139,14 @@ boolean add_gcode_line_to_queue(String gcode_line)
         return false;
     }
 
-    GCODE_LINES[END_GCODE_LINE_IDX] = gcode_line;
+    // GCODE_LINES[END_GCODE_LINE_IDX].clear();
+    // GCODE_LINES[END_GCODE_LINE_IDX].concat(gcode_line);
+    strcpy(GCODE_LINES[END_GCODE_LINE_IDX], gcode_line.c_str());
+    // Serial.printf("Copied the string to char * array: %s\n", GCODE_LINES[END_GCODE_LINE_IDX]);
+    // GCODE_LINES[END_GCODE_LINE_IDX] = gcode_line;
     END_GCODE_LINE_IDX = (END_GCODE_LINE_IDX + 1) % MAX_GCODE_LINES; 
+    Serial.printf("End_idx: %d, Start_idx: %d\n", END_GCODE_LINE_IDX, START_GCODE_LINE_IDX);
+    // free(&gcode_line);
     return true;
 }
 
@@ -116,6 +154,8 @@ boolean add_gcode_line_to_queue(String gcode_line)
 void read_and_execute_gcode_lines()
 {
     int current_gcode_line_end_idx = END_GCODE_LINE_IDX;
+    // Serial.printf("Remaining Heap Mem: %u\n", ESP.getFreeHeap());
+
     while (START_GCODE_LINE_IDX != current_gcode_line_end_idx)
     {
         interpret_gcode(GCODE_LINES[START_GCODE_LINE_IDX]);

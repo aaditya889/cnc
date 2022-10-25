@@ -4,8 +4,9 @@ import json
 import time
 
 
-DEFAULT_GCODE_FILE_NAME = 'test_gcode.gcode'
-# DEFAULT_GCODE_FILE_NAME = 'pp.gcode'
+# DEFAULT_GCODE_FILE_NAME = 'test_gcode.gcode'
+DEFAULT_GCODE_FILE_NAME = 'pcb.gcode'
+# DEFAULT_GCODE_FILE_NAME = 'squares.gcode'
 
 
 class GCode:
@@ -43,6 +44,13 @@ while (x.is_gcode_available()):
 		continue
 	print(f"{idx}Trying to add gcode line: {new_gcode_line}")
 	gcode_payload = {"gcode_line": new_gcode_line}
-	print(requests.post(url="http://192.168.1.12/push_gcode_line", data=gcode_payload).text)
-	time.sleep(0.1)
+	req = requests.post(url="http://adinodemcu/push_gcode_line", data=gcode_payload)
+	print(req.text)
+	req.close()
+	# print(req.headers)
+	req.close
+	time.sleep(0.5)
 	idx += 1
+	if idx == 500:
+		time.sleep(60*2)
+	# break
